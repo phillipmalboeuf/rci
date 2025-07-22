@@ -2,37 +2,28 @@
   import { onMount } from 'svelte'
   import type { Entry } from 'contentful'
   
-  // import { isTypeGrid, isTypeHero, isTypeList, isTypeText, type TypeTextSkeleton } from '$lib/clients/content_types'
-  // import Hero from '$lib/components/Hero.svelte'
-  // import Text from '$lib/components/Text.svelte'
-  // import List from '$lib/components/List.svelte'
-  // import Grid from '$lib/components/Grid.svelte'
+  import { isTypeBanner, isTypeListe, isTypeText } from '$lib/clients/content_types'
+  import Banner from '$lib/components/Banner.svelte'
+  import Text from '$lib/components/Text.svelte'
+  import List from '$lib/components/List.svelte'
   
-  // import { headerState } from '$lib/stores/header.svelte'
-
   import type { PageData } from './$types'
   let { data }: { data: PageData } = $props()
 </script>
 
-<section class="bleu padded">
-  <h2>Votre partenaire pour la maintenance, la réhabilitation et la modernisation de matériel roulant</h2>
-</section>
-
-<!-- {#if data.page.fields.content?.length}
-{#each data.page.fields.content as item, i (item.sys.id)}
+{#if data.page.fields.contenu?.length}
+{#each data.page.fields.contenu as item, i (item.sys.id)}
 <section class="{item.sys.contentType.sys.id}">
-  {#if isTypeHero(item)}
-  <Hero {item} />
+  {#if isTypeBanner(item)}
+  <Banner {item} />
   {:else if isTypeText(item)}
   <Text {item} />
-  {:else if isTypeList(item)}
-  <List list={item} />
-  {:else if isTypeGrid(item)}
-  <Grid grid={item} />
+  {:else if isTypeListe(item)}
+  <List {item} />
   {/if}
 </section>
 {/each}
-{/if} -->
+{/if}
 
 
 <style lang="scss">

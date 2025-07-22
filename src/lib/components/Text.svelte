@@ -1,0 +1,45 @@
+<script lang="ts">
+  import type { TypeText, TypeTextSkeleton } from '$lib/clients/content_types'
+  import type { Entry } from 'contentful'
+  
+  import Rich from './Rich.svelte'
+  import Media from './Media.svelte'
+
+  let { item, first }: { item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">, first?: boolean } = $props()
+</script>
+
+<section class="flex flex--gapped flex--spaced text" id={item.fields.id}>
+  {#if item.fields.titre}
+  <div class="col">
+    <h3>{item.fields.titre}</h3>
+  </div>
+  {/if}
+  {#if item.fields.corps || item.fields.liens?.length}
+  <div class="col flex flex--column flex--gapped corps">
+    {#if item.fields.corps}
+    <Rich body={item.fields.corps} />
+    {/if}
+
+    {#if item.fields.liens?.length}
+    <ul class="list--nostyle flex flex--gapped {item.fields.liens.length > 2 ? 'flex--column' : ''}">
+      {#each item.fields.liens as lien}
+      <li><a href={lien.fields.destination}><u>{lien.fields.titre}</u></a></li>
+      {/each}
+    </ul>
+    {/if}
+  </div>
+  {/if}
+  {#if item.fields.media}
+  <div class="col media">
+    <Media media={item.fields.media} />
+  </div>
+  {:else}
+  <div class="col"></div>
+  {/if}
+</section>
+
+<style lang="scss">
+  .text {
+  }
+</style>
+
