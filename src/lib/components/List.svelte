@@ -12,13 +12,14 @@
 
 <section class="flex flex--gapped padded" id={item.fields.id}>
   {#if item.fields.titre}
-  <div class="col col--12of12 col--mobile--12of12">
-    <h2>{@html item.fields.titre.replaceAll('Capitale-Nationale', '<span class="nobr">Capitale-Nationale</span>')}</h2>
+  <div class="col col--12of12 col--mobile--12of12 titre">
+    <hr />
+    <h4>{@html item.fields.titre}</h4>
   </div>
   {/if}
 
   {#if item.fields.corps}
-  <div class="col col--6of12 col--mobile--12of12 flex flex--column flex--gapped">
+  <div class="col col--6of12 col--mobile--12of12 flex flex--column flex--gapped corps">
     <Rich body={item.fields.corps} />
 
     <!-- {#if item.fields.liens?.length}
@@ -32,14 +33,17 @@
   {/if}
 
   {#if item.fields.items?.length}
-  <ul class="list--nostyle col flex flex--gapped" class:col--6of12={item.fields.type === 'Accordéon'}>
+  <ul class="list--nostyle col flex flex--gapped" class:col--6of12={item.fields.type === 'Accordéon'} class:flex--center={item.fields.type === 'Feed'}>
     {#each item.fields.items as listItem}
     <li class="col" class:col--12of12={item.fields.type === 'Accordéon'} class:col--8of12={item.fields.type === 'Feed'} class:col--3of12={item.fields.type === 'Grille'}>
       {#if item.fields.type === 'Accordéon'}
       <details name={item.sys.id}>
         {#if isTypeText(listItem)}
-        <summary class="flex flex--gapped flex--middle flex--spaced"><h4>{listItem.fields.titre}</h4> <span class="h4"></span></summary>
-        <article><Text item={listItem} /></article>
+        <summary class="flex flex--gapped flex--middle flex--spaced"><h5>{listItem.fields.titre}</h5> <svg width="14" height="8" viewBox="0 0 14 8"><path d="M1 1.14307L7 6.85735L13 1.14307" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.47665"/></svg></summary>
+        <article class="flex flex--column flex--gapped">
+          <hr>
+          <Text item={listItem} noTitle />
+        </article>
         {/if}
       </details>
       {:else}
@@ -57,8 +61,19 @@
 
 <style lang="scss">
   section {
-    h2 {
-      // margin-bottom: $s2;
+    .titre {
+      margin-bottom: $s3;
+
+      hr {
+        margin: 0;
+        height: 20px;
+      }
+    }
+
+    .corps {
+      @media (min-width: $tablet_portrait) {
+        padding-right: $s4;
+      }
     }
 
     ul {
@@ -67,57 +82,30 @@
     }
 
     details {
-      border-top: 1px solid;
+      padding: $s-2;
+      border-radius: $radius;
+      background-color: rgba($bleu-pale, 0.05);
+      margin-bottom: calc($s-3 * -1);
 
       summary {
         cursor: pointer;
-        padding: $s0 0;
 
-        @media (min-width: $tablet_landscape) {
-          padding: $s2 0;
-        }
-
-        span {
-          &:before {
-            content: '+';
-          }
+        svg {
+          transition: transform 0.333s;
+          transform: rotate(0deg);
         }
       }
 
       article {
-        padding: $s0 0;
-
-        @media (min-width: $tablet_landscape) {
-          padding: $s2 0;
-        }
-
-        :global(table) {
-          // max-width: 50%;
-          // margin: 0 auto;
-
-          @media (max-width: $mobile) {
-            max-width: 100%;
-          
-            :global(tr) {
-              display: flex;
-              flex-direction: column;
-            }
-
-            :global(th),
-            :global(td) {
-              width: 100%;
-              margin-bottom: $s1;
-            }
-          }
+        hr {
+          opacity: 0.25;
         }
       }
 
       &[open] {
         summary {
-          span {
-            &:before {
-              content: '–';
-            }
+          svg {
+            transform: rotate(180deg);
           }
         }
       }

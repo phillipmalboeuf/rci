@@ -5,7 +5,7 @@
   import Rich from './Rich.svelte'
   import Media from './Media.svelte'
 
-  let { item, first }: { item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">, first?: boolean } = $props()
+  let { item, first, noTitle }: { item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">, first?: boolean, noTitle?: boolean } = $props()
 </script>
 
 <section class="flex flex--gapped flex--spaced text" id={item.fields.id}>
@@ -13,12 +13,10 @@
   <div class="col col--5of12 media">
     <Media media={item.fields.media} />
   </div>
-  {:else}
-  <div class="col"></div>
   {/if}
   {#if item.fields.corps || item.fields.liens?.length}
-  <div class="col col--7of12 flex flex--column flex--gapped corps">
-    {#if item.fields.titre}
+  <div class="col col--7of12 flex flex--column flex--gapped corps" class:col--12of12={!item.fields.media}>
+    {#if item.fields.titre && !noTitle}
     <div class="col">
       <h3>{item.fields.titre}</h3>
     </div>

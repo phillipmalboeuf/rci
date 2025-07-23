@@ -16,7 +16,7 @@
   </div>
   
   {#if item.fields.corps}
-  <div class="entete__content">
+  <div class="entete__content flex flex--column flex--gapped flex--spaced flex--middle">
     {#if item.fields.media}
     <figure>
       <Media media={item.fields.media} />
@@ -40,8 +40,11 @@
 
 <style lang="scss">
   .entete {
+    padding-top: $s6;
+
     &__titre {
       flex: 1;
+      margin-bottom: $s4;
 
       hr {
         margin: 0;
@@ -50,14 +53,16 @@
     }
 
     &__content {
-      :global(h1 > em),
-      :global(h2 > em),
-      :global(h3 > em),
-      :global(h4 > em),
-      :global(h5 > em),
-      :global(h6 > em) {
-        font-style: normal;
-        opacity: 0.5;
+      max-width: 466px;
+      min-height: 223px;
+
+      padding: $s0;
+      background-color: $bleu-pale;
+      border-radius: $radius;
+      text-align: center;
+
+      @media (min-width: $tablet_portrait) {
+        margin-bottom: calc($s6 * -1);
       }
     }
   }
