@@ -9,13 +9,21 @@
 </script>
 
 <section class="flex flex--gapped flex--spaced text" id={item.fields.id}>
-  {#if item.fields.titre}
-  <div class="col">
-    <h3>{item.fields.titre}</h3>
+  {#if item.fields.media}
+  <div class="col col--5of12 media">
+    <Media media={item.fields.media} />
   </div>
+  {:else}
+  <div class="col"></div>
   {/if}
   {#if item.fields.corps || item.fields.liens?.length}
-  <div class="col flex flex--column flex--gapped corps">
+  <div class="col col--7of12 flex flex--column flex--gapped corps">
+    {#if item.fields.titre}
+    <div class="col">
+      <h3>{item.fields.titre}</h3>
+    </div>
+    {/if}
+
     {#if item.fields.corps}
     <Rich body={item.fields.corps} />
     {/if}
@@ -28,13 +36,6 @@
     </ul>
     {/if}
   </div>
-  {/if}
-  {#if item.fields.media}
-  <div class="col media">
-    <Media media={item.fields.media} />
-  </div>
-  {:else}
-  <div class="col"></div>
   {/if}
 </section>
 

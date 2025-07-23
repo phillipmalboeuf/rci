@@ -2,10 +2,11 @@
   import { onMount } from 'svelte'
   import type { Entry } from 'contentful'
   
-  import { isTypeBanner, isTypeListe, isTypeText } from '$lib/clients/content_types'
+  import { isTypeBanner, isTypeHeader, isTypeListe, isTypeText } from '$lib/clients/content_types'
   import Banner from '$lib/components/Banner.svelte'
   import Text from '$lib/components/Text.svelte'
   import List from '$lib/components/List.svelte'
+  import Entete from '$lib/components/Entete.svelte'
   
   import type { PageData } from './$types'
   let { data }: { data: PageData } = $props()
@@ -20,6 +21,8 @@
   <Text {item} />
   {:else if isTypeListe(item)}
   <List {item} />
+  {:else if isTypeHeader(item)}
+  <Entete {item} />
   {/if}
 </section>
 {/each}

@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { type TypeListeSkeleton, type TypeTextSkeleton, isTypeLienDeNavigation, isTypeText } from '$lib/clients/content_types'
+  import { type TypeListeSkeleton, type TypeTextSkeleton, isTypeLienDeNavigation, isTypeMembre, isTypeText } from '$lib/clients/content_types'
   import type { Entry } from 'contentful'
 
   import Text from './Text.svelte'
   import Rich from './Rich.svelte'
   import Media from './Media.svelte'
+  import Member from './Member.svelte'
 
   let { item }: { item: Entry<TypeListeSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> } = $props()
 </script>
@@ -31,19 +32,21 @@
   {/if}
 
   {#if item.fields.items?.length}
-  <ul class="list--nostyle col col--12of12 flex flex--gapped">
+  <ul class="list--nostyle col flex flex--gapped" class:col--6of12={item.fields.type === 'Accordéon'}>
     {#each item.fields.items as listItem}
-    <li class="col">
+    <li class="col" class:col--12of12={item.fields.type === 'Accordéon'} class:col--8of12={item.fields.type === 'Feed'} class:col--3of12={item.fields.type === 'Grille'}>
       {#if item.fields.type === 'Accordéon'}
       <details name={item.sys.id}>
         {#if isTypeText(listItem)}
-        <summary class="flex flex--gapped flex--middle flex--spaced"><h2>{listItem.fields.titre}</h2> <span class="h3"></span></summary>
+        <summary class="flex flex--gapped flex--middle flex--spaced"><h4>{listItem.fields.titre}</h4> <span class="h4"></span></summary>
         <article><Text item={listItem} /></article>
         {/if}
       </details>
       {:else}
       {#if isTypeText(listItem)}
       <Text item={listItem} />
+      {:else if isTypeMembre(listItem)}
+      <Member item={listItem} />
       {/if}
       {/if}
     </li>
@@ -59,8 +62,6 @@
     }
 
     ul {
-      margin: $s5 0;
-
       li {
       }
     }

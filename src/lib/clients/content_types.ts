@@ -77,6 +77,7 @@ export interface TypeMembreFields {
     bio?: EntryFieldTypes.RichText;
     membre?: EntryFieldTypes.Symbol;
     linkedIn?: EntryFieldTypes.Symbol;
+    photo?: EntryFieldTypes.AssetLink;
 }
 
 export type TypeMembreSkeleton = EntrySkeletonType<TypeMembreFields, "membre">;

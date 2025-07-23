@@ -803,6 +803,10 @@ dialog {
 .bleu {
 	color: $blanc;
 	background-color: $bleu;
+
+	hr {
+		color: $bleu-pale;
+	}
 }
 .bleu-pale {
 	color: $blanc;
