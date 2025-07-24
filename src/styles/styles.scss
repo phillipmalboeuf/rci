@@ -281,12 +281,28 @@ button,
 	gap: $s-2;
 	transition: background-color 333ms, color 333ms;
 
-	&.button--large {
-		padding: ($s-1) ($s2);
-	}
-
 	&.button--full {
 		width: 100%;
+	}
+
+	.bleu & {
+		color: $blanc;
+		background: rgba($blanc, 0.25);
+	}
+
+	.blanc & {
+		color: $noir;
+		background: rgba($bleu, 0.1);
+	}
+
+	&.button--large {
+		padding: ($s3) ($s2);
+		border-radius: calc($radius * 6);
+		font-size: $s3;
+
+		.bleu & {
+			background: $bleu-fonce;
+		}
 	}
 
 	&.button--dark {

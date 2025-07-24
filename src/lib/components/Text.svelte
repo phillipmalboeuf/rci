@@ -8,7 +8,7 @@
   let { item, first, noTitle }: { item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">, first?: boolean, noTitle?: boolean } = $props()
 </script>
 
-<section class="flex flex--gapped flex--spaced text" id={item.fields.id}>
+<section class="flex flex--gapped flex--spaced text{item.fields.media ? '' : ' text--no-media'}" id={item.fields.id}>
   {#if item.fields.media}
   <div class="col col--5of12 media">
     <Media media={item.fields.media} />
@@ -17,7 +17,7 @@
   {#if item.fields.corps || item.fields.liens?.length}
   <div class="col col--7of12 flex flex--column flex--gapped corps" class:col--12of12={!item.fields.media}>
     {#if item.fields.titre && !noTitle}
-    <div class="col">
+    <div class="col titre">
       <h3>{item.fields.titre}</h3>
     </div>
     {/if}
@@ -29,7 +29,7 @@
     {#if item.fields.liens?.length}
     <ul class="list--nostyle flex flex--gapped {item.fields.liens.length > 2 ? 'flex--column' : ''}">
       {#each item.fields.liens as lien}
-      <li><a href={lien.fields.destination}><u>{lien.fields.titre}</u></a></li>
+      <li><a href={lien.fields.destination} class="button button--muted" target={lien.fields.externe ? '_blank' : '_self'}>{lien.fields.titre}</a></li>
       {/each}
     </ul>
     {/if}

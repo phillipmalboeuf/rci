@@ -2,7 +2,7 @@
   import { onMount } from 'svelte'
   import type { Entry } from 'contentful'
   
-  import { isTypeBanner, isTypeHeader, isTypeListe, isTypeText } from '$lib/clients/content_types'
+  import { isTypeBanner, isTypeHeader, isTypeListe, isTypeText, type TypeBannerSkeleton } from '$lib/clients/content_types'
   import Banner from '$lib/components/Banner.svelte'
   import Text from '$lib/components/Text.svelte'
   import List from '$lib/components/List.svelte'
@@ -16,7 +16,7 @@
 {#each data.page.fields.contenu as item, i (item.sys.id)}
 <section class="{item.sys.contentType.sys.id}">
   {#if isTypeBanner(item)}
-  <Banner {item} />
+  <Banner {item} previousCouleur={(data.page.fields.contenu[i - 1] as Entry<TypeBannerSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">)?.fields.couleur} />
   {:else if isTypeText(item)}
   <Text {item} />
   {:else if isTypeListe(item)}
@@ -31,11 +31,11 @@
 
 <style lang="scss">
   section {
-    margin: $s7 0;
+    // margin: $s7 0;
 
-    &:first-child {
-      margin-top: 0;
-    }
+    // &:first-child {
+    //   margin-top: 0;
+    // }
 
     // &.hero:first-child {
     //   margin-top: -130px;

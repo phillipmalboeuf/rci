@@ -10,7 +10,12 @@
   let { item }: { item: Entry<TypeListeSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> } = $props()
 </script>
 
-<section class="flex flex--gapped padded" id={item.fields.id}>
+<section class="flex flex--gapped padded {{
+  "Foncé": "bleu",
+  "Moyen": "bleu-pale",
+  "Gris": "gris",
+  "Blanc": "blanc",
+}[item.fields.couleur]}" id={item.fields.id}>
   {#if item.fields.titre}
   <div class="col col--12of12 col--mobile--12of12 titre">
     <hr />
@@ -22,20 +27,20 @@
   <div class="col col--6of12 col--mobile--12of12 flex flex--column flex--gapped corps">
     <Rich body={item.fields.corps} />
 
-    <!-- {#if item.fields.liens?.length}
+    {#if item.fields.liens?.length && !item.fields.grandsBoutons}
     <ul class="list--nostyle flex flex--gapped">
       {#each item.fields.liens as lien}
-      <li><a href={lien.fields.route}><u>{lien.fields.titre}</u></a></li>
+      <li><a href={lien.fields.destination} class="button" target={lien.fields.externe ? '_blank' : '_self'}>{lien.fields.titre}</a></li>
       {/each}
     </ul>
-    {/if} -->
+    {/if}
   </div>
   {/if}
 
   {#if item.fields.items?.length}
   <ul class="list--nostyle col flex flex--gapped" class:col--6of12={item.fields.type === 'Accordéon'} class:flex--center={item.fields.type === 'Feed'}>
     {#each item.fields.items as listItem}
-    <li class="col" class:col--12of12={item.fields.type === 'Accordéon'} class:col--8of12={item.fields.type === 'Feed'} class:col--3of12={item.fields.type === 'Grille'}>
+    <li class="col" class:col--12of12={item.fields.type === 'Accordéon'} class:col--10of12={item.fields.type === 'Feed'} class:col--3of12={item.fields.type === 'Grille'} class:gris={item.fields.type === 'Feed'}>
       {#if item.fields.type === 'Accordéon'}
       <details name={item.sys.id}>
         {#if isTypeText(listItem)}
@@ -57,10 +62,21 @@
     {/each}
   </ul>
   {/if}
+
+  {#if item.fields.liens?.length && item.fields.grandsBoutons}
+  <ul class="list--nostyle flex flex--gapped boutons">
+    {#each item.fields.liens as lien}
+    <li><a href={lien.fields.destination} class="button button--large button--full" target={lien.fields.externe ? '_blank' : '_self'}>{lien.fields.titre}</a></li>
+    {/each}
+  </ul>
+  {/if}
 </section>
 
 <style lang="scss">
   section {
+    padding-top: $s6;
+    padding-bottom: $s6;
+
     .titre {
       margin-bottom: $s3;
 
@@ -76,14 +92,44 @@
       }
     }
 
-    ul {
-      li {
+    .flex--center {
+      .gris {
+        padding: $s-2;
+        border-radius: $radius;
+      }
+
+      :global(.text:not(.text--no-media)) {
+        align-items: stretch;
+      }
+
+      :global(.media img),
+      :global(.media picture) {
+        height: 100%;
+        object-fit: cover;
+
+        @media (min-width: $tablet_portrait) {
+          border-top-left-radius: $radius;
+          border-bottom-left-radius: $radius;
+        }
+      }
+
+      :global(.text:not(.text--no-media) .corps) {
+        justify-content: space-between;
+      }
+
+      :global(.text--no-media .corps) {
+        flex-direction: row;
+      }
+
+      :global(.text--no-media .corps ul) {
+        width: auto;
+        margin-left: auto;
       }
     }
 
     details {
       padding: $s-2;
-      border-radius: $radius;
+      border-radius: calc($radius / 2);
       background-color: rgba($bleu-pale, 0.05);
       margin-bottom: calc($s-3 * -1);
 
@@ -108,6 +154,26 @@
             transform: rotate(180deg);
           }
         }
+      }
+    }
+
+    &.bleu {
+      details {
+        background-color: rgba($blanc, 0.05);
+      }
+    }
+
+    &.bleu-pale {
+      details {
+        background-color: rgba($blanc, 0.1);
+      }
+    }
+
+    .boutons {
+      margin-top: $s4;
+
+      li {
+        flex: 1;
       }
     }
   }

@@ -4,6 +4,8 @@ export interface TypeBannerFields {
     id?: EntryFieldTypes.Symbol;
     corps?: EntryFieldTypes.RichText;
     media?: EntryFieldTypes.AssetLink;
+    couleur?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Gris" | "Moyen">;
+    format?: EntryFieldTypes.Symbol<"Grand" | "Moyen" | "Plein">;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
 }
 
@@ -59,7 +61,9 @@ export interface TypeListeFields {
     id?: EntryFieldTypes.Symbol;
     corps?: EntryFieldTypes.RichText;
     type?: EntryFieldTypes.Symbol<"Accordéon" | "Feed" | "Grille">;
+    couleur?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Gris" | "Moyen">;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
+    grandsBoutons?: EntryFieldTypes.Boolean;
     items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeMembreSkeleton | TypeTextSkeleton>>;
 }
 
