@@ -6,6 +6,7 @@
   import { onNavigate } from '$app/navigation'
   
   import Locales from './Locales.svelte'
+  import Rich from './Rich.svelte';
   // import Icon from './Icon.svelte'
   // import Footer from './Footer.svelte'
   
@@ -20,12 +21,23 @@
 
 </script>
 
-<footer class="padded bleu-pale flex flex--gapped flex--spaced">
-  <nav class="main-nav flex flex--gapped flex--middle">
-    {#each navigations.principal.fields.liens as link}
-      <a href={link.fields.destination} target={link.fields.externe ? '_blank' : undefined}>{link.fields.titre}</a>
+<footer class="padded bleu-pale flex flex--thick_gapped flex--spaced">
+  <nav class="main-nav flex flex--thick_gapped">
+    <div class="col col--4of12">
+      {#if navigations.footer.fields.corps}
+      <Rich body={navigations.footer.fields.corps} />
+      {/if}
+    </div>
+    {#each navigations.footer.fields.liens as link}
+    <div class="col">
+      <hr>
+      <a href={link.fields.destination} class="h5" target={link.fields.externe ? '_blank' : undefined}>{link.fields.titre}</a>
+
+      {#each link.fields.sousLiens as souslien}
+      <a href={souslien.fields.destination} class="small" target={souslien.fields.externe ? '_blank' : undefined}>{souslien.fields.titre}</a><br>
+      {/each}
+    </div>
     {/each}
-    <Locales />
   </nav>
 
   <div class="svgs">
@@ -68,6 +80,27 @@
 <style lang="scss">
   footer {
     min-height: 50lvh;
+
+    .main-nav {
+      margin-bottom: $s4;
+      
+      .col {
+        // flex: 1;
+
+        &:first-child {
+          margin-right: auto;
+        }
+
+        hr {
+          margin: 0;
+        }
+
+        .h5 {
+          margin-bottom: $s-2;
+          min-width: 180px;
+        }
+      }
+    }
   }
 
   .svgs {

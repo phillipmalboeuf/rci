@@ -32,6 +32,8 @@ export interface TypeHeaderFields {
     titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
     corps?: EntryFieldTypes.RichText;
+    couleur?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Gris" | "Moyen">;
+    format?: EntryFieldTypes.Symbol<"Boîte" | "Plein">;
     media?: EntryFieldTypes.AssetLink;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
 }
@@ -47,6 +49,7 @@ export interface TypeLienDeNavigationFields {
     titre?: EntryFieldTypes.Symbol;
     destination?: EntryFieldTypes.Symbol;
     externe?: EntryFieldTypes.Boolean;
+    sousLiens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
 }
 
 export type TypeLienDeNavigationSkeleton = EntrySkeletonType<TypeLienDeNavigationFields, "lienDeNavigation">;
@@ -94,6 +97,7 @@ export function isTypeMembre<Modifiers extends ChainModifiers, Locales extends L
 export interface TypeNavigationFields {
     id: EntryFieldTypes.Symbol;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
+    corps?: EntryFieldTypes.RichText;
 }
 
 export type TypeNavigationSkeleton = EntrySkeletonType<TypeNavigationFields, "navigation">;
