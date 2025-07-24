@@ -2,11 +2,12 @@
   import { onMount } from 'svelte'
   import type { Entry } from 'contentful'
   
-  import { isTypeBanner, isTypeHeader, isTypeListe, isTypeText, type TypeBannerSkeleton } from '$lib/clients/content_types'
+  import { isTypeBanner, isTypeHeader, isTypeListe, isTypeText, isTypeGallerie, type TypeBannerSkeleton } from '$lib/clients/content_types'
   import Banner from '$lib/components/Banner.svelte'
   import Text from '$lib/components/Text.svelte'
   import List from '$lib/components/List.svelte'
   import Entete from '$lib/components/Entete.svelte'
+  import Gallerie from '$lib/components/Gallerie.svelte'
   
   import type { PageData } from './$types'
   let { data }: { data: PageData } = $props()
@@ -23,6 +24,8 @@
   <List {item} />
   {:else if isTypeHeader(item)}
   <Entete {item} />
+  {:else if isTypeGallerie(item)}
+  <Gallerie {item} />
   {/if}
 </section>
 {/each}
