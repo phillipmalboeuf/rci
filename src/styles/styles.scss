@@ -148,7 +148,7 @@ h5,
 	line-height: 1.2;
 
 	@media (max-width: $mobile) {
-    font-size: $s0;
+    // font-size: $s0;
   }
 
 	&:not(.col) {
@@ -283,16 +283,32 @@ button,
 
 	&.button--full {
 		width: 100%;
+		text-align: center;
 	}
 
-	.bleu & {
+	.bleu &:not(.button--none) {
 		color: $blanc;
 		background: rgba($blanc, 0.25);
 	}
 
-	.blanc & {
+	.bleu &:not(.button--none),
+	.bleu-pale &:not(.button--none) {
+		&:hover,
+		&:focus-visible {
+			color: $noir;
+			background: $blanc;
+		}
+	}
+
+	.blanc &:not(.button--none) {
 		color: $noir;
 		background: rgba($bleu, 0.1);
+
+		&:hover,
+		&:focus-visible {
+			color: $blanc;
+			background: $noir;
+		}
 	}
 
 	&.button--large {
@@ -300,8 +316,18 @@ button,
 		border-radius: calc($radius * 6);
 		font-size: $s3;
 
+		@media (max-width: $tablet_portrait) {
+			font-size: $s2;
+		}
+
 		.bleu & {
 			background: $bleu-fonce;
+
+			&:hover,
+			&:focus-visible {
+				color: $noir;
+				background: $blanc;
+			}
 		}
 	}
 
@@ -330,8 +356,8 @@ button,
 
 		&:hover,
 		&:focus {
-			color: $noir;
-			background: $blanc;
+			color: $blanc;
+			background: $noir;
 		}
 	}
 
@@ -752,7 +778,7 @@ dialog {
 
 		@for $i from 1 through $number_of_columns {
 			@media (max-width: $tablet_portrait) {
-				&.col--tablet--#{$i}of#{$number_of_columns} {
+				&.col--portrait--#{$i}of#{$number_of_columns} {
 					$width:  math.div(100%, $number_of_columns) * $i;
 					$adjust: calc(var(--gap) / #{math.div($number_of_columns, $i)});
 					width: calc(#{$width} - var(--gap) + #{$adjust});

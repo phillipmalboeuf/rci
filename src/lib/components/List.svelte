@@ -38,9 +38,9 @@
   {/if}
 
   {#if item.fields.items?.length}
-  <ul class="list--nostyle col flex flex--gapped" class:col--6of12={item.fields.type === 'Accordéon'} class:flex--center={item.fields.type === 'Feed'}>
+  <ul class="list--nostyle col col--portrait--12of12 flex flex--gapped" class:col--6of12={item.fields.type === 'Accordéon'} class:flex--center={item.fields.type === 'Feed'}>
     {#each item.fields.items as listItem}
-    <li class="col" class:col--12of12={item.fields.type === 'Accordéon'} class:col--10of12={item.fields.type === 'Feed'} class:col--3of12={item.fields.type === 'Grille'} class:gris={item.fields.type === 'Feed'}>
+    <li class="col col--portrait--12of12" class:col--12of12={item.fields.type === 'Accordéon'} class:col--10of12={item.fields.type === 'Feed'} class:col--3of12={item.fields.type === 'Grille'} class:gris={item.fields.type === 'Feed'}>
       {#if item.fields.type === 'Accordéon'}
       <details name={item.sys.id}>
         {#if isTypeText(listItem)}
@@ -174,6 +174,11 @@
 
       li {
         flex: 1;
+
+        @media (max-width: $tablet_portrait) {
+          flex: none;
+          width: 100%;
+        }
       }
     }
   }

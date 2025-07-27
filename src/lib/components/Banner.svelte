@@ -32,7 +32,7 @@
       <Media media={item.fields.media} />
     </figure>
     {/if}
-    <div class="banner__content">
+    <div class="banner__content flex flex--column flex--spaced flex--gapped">
       <Rich body={item.fields.corps} />
     </div>
     {#if item.fields.liens?.length}

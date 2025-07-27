@@ -23,13 +23,13 @@
 
 <footer class="padded bleu-pale flex flex--thick_gapped flex--spaced">
   <nav class="main-nav flex flex--thick_gapped">
-    <div class="col col--4of12">
+    <div class="col col--4of12 col--portrait--12of12">
       {#if navigations.footer.fields.corps}
       <Rich body={navigations.footer.fields.corps} />
       {/if}
     </div>
     {#each navigations.footer.fields.liens as link}
-    <div class="col">
+    <div class="col col--portrait--12of12">
       <hr>
       <a href={link.fields.destination} class="h5" target={link.fields.externe ? '_blank' : undefined}>{link.fields.titre}</a>
 
@@ -83,6 +83,15 @@
 
     .main-nav {
       margin-bottom: $s4;
+
+      a {
+        transition: color 0.333s;
+
+        &:hover,
+        &:focus-visible {
+          color: $bleu-pale;
+        }
+      }
       
       .col {
         // flex: 1;
@@ -110,14 +119,31 @@
     display: flex;
     align-items: flex-end;
 
+    .svg--logo {
+      @media (max-width: $tablet_portrait) {
+        width: auto;
+        height: 70px;
+      }
+    }
+
     .svg--logotype {
       position: absolute;
       top: 0;
       right: 0;
+
+      @media (max-width: $tablet_portrait) {
+        width: auto;
+        height: 36px;
+      }
     }
 
     .svg--bars {
       flex: 1;
+
+      @media (max-width: $tablet_portrait) {
+        width: auto;
+        height: 24px;
+      }
     }
   }
 </style>

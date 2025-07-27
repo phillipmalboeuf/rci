@@ -75,21 +75,32 @@
     &--Boîte {
       .entete__content {
         max-width: 466px;
-
-        > div {
-          width: 100%;
-          min-height: 223px;
-        }
         
-
         padding: $s0;
         background-color: $bleu-pale;
         border-radius: $radius;
         text-align: center;
 
+        > div {
+          width: 100%;
+          min-height: 223px;
+        }
+
         @media (min-width: $tablet_portrait) {
           margin-bottom: calc($s6 * -1);
         }
+
+        @media (max-width: $tablet_portrait) {
+          margin-top: auto;
+        }
+      }
+    }
+
+    @media (max-width: $tablet_portrait) {
+      min-height: calc(100lvh - 65px);
+
+      &:not(:has(> .entete__content)) {
+        min-height: calc(60lvh - 65px);
       }
     }
   }

@@ -10,12 +10,12 @@
 
 <section class="flex flex--gapped flex--spaced text{item.fields.media ? '' : ' text--no-media'}" id={item.fields.id}>
   {#if item.fields.media}
-  <div class="col col--5of12 media">
+  <div class="col col--5of12 col--portrait--12of12 media">
     <Media media={item.fields.media} />
   </div>
   {/if}
   {#if item.fields.corps || item.fields.liens?.length}
-  <div class="col col--7of12 flex flex--column flex--gapped corps" class:col--12of12={!item.fields.media}>
+  <div class="col col--7of12 col--portrait--12of12 flex flex--column flex--gapped corps" class:col--12of12={!item.fields.media}>
     {#if item.fields.titre && !noTitle}
     <div class="col titre">
       <h3>{item.fields.titre}</h3>

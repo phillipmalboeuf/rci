@@ -39,7 +39,7 @@
         </div>
         {/if}
         {#if item.fields.linkedIn}
-        <a href={item.fields.linkedIn} class="button" target="_blank">LinkedIn</a>
+        <a href={item.fields.linkedIn} class="button button--muted" target="_blank">LinkedIn</a>
         {/if}
       </div>
     </div>
