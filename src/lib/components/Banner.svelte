@@ -29,7 +29,7 @@
 }[item.fields.couleur]}">
     {#if item.fields.media}
     <figure>
-      <Media media={item.fields.media} />
+      <Media media={item.fields.media} mobileMedia={item.fields.mobileMedia} />
     </figure>
     {/if}
     <div class="banner__content flex flex--column flex--spaced flex--gapped">
@@ -69,6 +69,10 @@
       .banner__inner {
         padding: $s0;
         border-radius: $radius;
+
+        @media (max-width: $tablet_portrait) {
+          padding: $s-2;
+        }
       }
     }
 

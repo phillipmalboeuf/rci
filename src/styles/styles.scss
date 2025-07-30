@@ -131,9 +131,9 @@ h4,
 	font-family: $body_font;
 	line-height: 1.1;
 
-	@media (max-width: $mobile) {
-    font-size: $s1;
-  }
+	// @media (max-width: $mobile) {
+  //   font-size: $s1;
+  // }
 
 	&:not(.col) {
 		max-width: none;
@@ -286,7 +286,9 @@ button,
 		text-align: center;
 	}
 
-	.blanc &:not(.button--none) {
+	.blanc &:not(.button--none),
+	.bleu .blanc &:not(.button--none),
+	.bleu-pale .blanc &:not(.button--none) {
 		color: $noir;
 		background: rgba($bleu, 0.1);
 
@@ -730,7 +732,7 @@ dialog {
     --gap: #{$s0};
 
     @media (max-width: $tablet_portrait) {
-      --gap: #{$s-3};
+      // --gap: #{$s-1};
     }
 
 		// hr {

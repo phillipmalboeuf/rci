@@ -4,6 +4,7 @@ export interface TypeBannerFields {
     id?: EntryFieldTypes.Symbol;
     corps?: EntryFieldTypes.RichText;
     media?: EntryFieldTypes.AssetLink;
+    mobileMedia?: EntryFieldTypes.AssetLink;
     couleur?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Gris" | "Moyen">;
     format?: EntryFieldTypes.Symbol<"Grand" | "Moyen" | "Plein">;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;

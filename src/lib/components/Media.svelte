@@ -53,5 +53,9 @@
     aspect-ratio: var(--ar);
     object-position: var(--fp-x) var(--fp-y);
     object-fit: cover;
+
+    @media (max-width: 900px) {
+      aspect-ratio: var(--mobile-ar);
+    }
   }
 </style>

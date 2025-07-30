@@ -75,6 +75,11 @@
 <path d="M173.92 66.4289C173.92 57.9512 169.215 55.1085 162.703 55.1085C159.967 54.9464 157.264 55.7697 155.083 57.4292C152.902 59.0887 151.387 61.4746 150.814 64.1546H157.328C157.491 62.9278 158.118 61.8099 159.079 61.0311C160.041 60.2522 161.265 59.8716 162.499 59.9676C165.548 59.9676 167.3 61.4661 167.3 65.4485V66.2241L162.751 66.6386C153.963 67.3612 150.087 70.4643 150.087 75.23C150.087 79.5257 153.498 83.0355 159.391 83.0355C161.157 83.2203 162.936 82.8456 164.478 81.9641C166.02 81.0827 167.245 79.7391 167.982 78.1232C168.028 79.6134 168.271 81.091 168.704 82.5175H175.062C174.282 80.0429 173.898 77.4605 173.925 74.8661L173.92 66.4289ZM167.302 72.5288C167.36 73.3267 167.246 74.1278 166.969 74.8782C166.691 75.6285 166.256 76.3107 165.693 76.8788C165.129 77.447 164.451 77.8879 163.703 78.1718C162.955 78.4557 162.155 78.5762 161.356 78.525C158.15 78.525 156.755 76.7158 156.755 74.8029C156.755 72.276 159.082 71.0808 164.095 70.7195L167.3 70.5123L167.302 72.5288Z"/>
 </svg>
   </div>
+  <nav class="secondary-nav flex">
+    <small>© 2025 Rail Industries Canada</small>
+    <a class="small" href="/politique" target="_blank">Politique de confidentialité</a>
+    <a class="small" href="https://caserne.com" target="_blank">Design par Caserne</a>
+  </nav>
 </footer>
 
 <style lang="scss">
@@ -84,12 +89,16 @@
     .main-nav {
       margin-bottom: $s4;
 
+      @media (max-width: $tablet_portrait) {
+        margin-top: $s2;
+      }
+
       a {
-        transition: color 0.333s;
+        transition: opacity 0.333s;
 
         &:hover,
         &:focus-visible {
-          color: $bleu-pale;
+          opacity: 0.75;
         }
       }
       
@@ -102,11 +111,46 @@
 
         hr {
           margin: 0;
+
+          @media (max-width: $tablet_portrait) {
+            margin-bottom: 2px;
+          }
         }
 
         .h5 {
           margin-bottom: $s-2;
           min-width: 180px;
+        }
+      }
+    }
+  }
+
+  .secondary-nav {
+    @media (max-width: $tablet_portrait) {
+      flex-direction: column;
+      margin-top: calc($s2 * -1);
+    }
+
+    @media (min-width: $tablet_portrait) {
+      gap: $s3;
+      margin-top: calc($s0 * -1);
+    }
+
+    a,
+    small {
+      transition: opacity 0.333s;
+      opacity: 0.75;
+
+      &:hover,
+      &:focus-visible {
+        opacity: 1;
+      }
+
+      &:last-child {
+        margin-left: auto;
+
+        @media (max-width: $tablet_portrait) {
+          margin: $s0 0;
         }
       }
     }

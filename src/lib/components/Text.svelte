@@ -55,6 +55,10 @@
     &.text--Moyen {
       padding: $s6 $s2 $s2;
 
+      @media (max-width: $tablet_portrait) {
+        padding: $s6 $s0 $s0;
+      }
+
       .corps {
         position: relative;
         padding: $s2;
@@ -62,18 +66,30 @@
         max-width: 1275px;
         margin: 0 auto;
 
-        > :global(*) {
-          width: 50%;
-          margin-left: auto;
+        @media (max-width: $tablet_portrait) {
+          padding: $s0;
+        }
+
+        @media (min-width: $tablet_portrait) {
+          > :global(*) {
+            width: 50%;
+            margin-left: auto;
+          }
         }
       }
 
       .titre {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: $s2;
-        width: 33%;
+        @media (min-width: $tablet_portrait) {
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: $s2;
+          width: 33%;
+        }
+
+        @media (max-width: $tablet_portrait) {
+          margin-bottom: $s4;
+        }
       }
 
       &.blanc {
@@ -101,8 +117,16 @@
     &.text--Plein {
       padding: $s6 $s2 $s2;
 
+      @media (max-width: $tablet_portrait) {
+        padding: $s6 $s0 $s0;
+      }
+
       :global(table:first-child:nth-last-child(2)) {
         font-size: $s3;
+
+        @media (max-width: $tablet_portrait) {
+          font-size: $s2;
+        }
       }
     }
 

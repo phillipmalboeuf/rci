@@ -23,9 +23,9 @@
     //   delay: 0,
     //   stopOnInteraction: false,
     }),
-    AutoHeight({
+    // AutoHeight({
       
-    })
+    // })
   ]
 
   let { item }: { item: Entry<TypeGallerieSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> } = $props()
@@ -75,6 +75,10 @@
   .gallerie {
     padding: $s6;
 
+    @media (max-width: $mobile) {
+      padding: $s0;
+    }
+
     .embla {
       overflow: hidden;
       position: relative;
@@ -104,6 +108,10 @@
           width: 100%;
           padding: 0 calc($s4);
           // height: 50lvh;
+
+          @media (max-width: $mobile) {
+            padding: 0;
+          }
         }
 
         :global(img),
