@@ -17,7 +17,9 @@ export function isTypeBanner<Modifiers extends ChainModifiers, Locales extends L
 }
 
 export interface TypeGallerieFields {
+    titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
+    type?: EntryFieldTypes.Symbol<"Icons" | "Slider">;
     photos?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
 }
 
@@ -125,6 +127,8 @@ export interface TypeTextFields {
     titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
     corps?: EntryFieldTypes.RichText;
+    couleur?: EntryFieldTypes.Symbol<"Blanc" | "Foncé" | "Gris" | "Moyen">;
+    format?: EntryFieldTypes.Symbol<"Moyen" | "Plein">;
     media?: EntryFieldTypes.AssetLink;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLienDeNavigationSkeleton>>;
 }

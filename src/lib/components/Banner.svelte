@@ -36,7 +36,7 @@
       <Rich body={item.fields.corps} />
     </div>
     {#if item.fields.liens?.length}
-    <div class="banner__liens">
+    <div class="banner__liens flex flex--gapped flex--middle">
       {#each item.fields.liens as lien}
       <a href={lien.fields.destination} class="button" target={lien.fields.externe ? '_blank' : '_self'}>{lien.fields.titre}</a>
       {/each}

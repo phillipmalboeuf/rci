@@ -32,7 +32,12 @@
 </script>
 
 <section class="gallerie" id={item.fields.id}>
+  {#if item.fields.titre}
+  <hr>
+  <h6>{item.fields.titre}</h6>
+  {/if}
   {#if item.fields.photos && item.fields.photos.length > 0}
+  {#if item.fields.type === 'Slider'}
   <div class="embla" use:emblaCarouselSvelte={{ options: {
     ...options,
   }, plugins, }} onemblaInit={e => embla = e.detail}>
@@ -52,6 +57,17 @@
   <Dots dots={item.fields.photos.length} slider={embla} />
   {/if}
   </div>
+  {:else if item.fields.type === 'Icons'}
+  <div class="icons">
+    <ul class="list--nostyle flex flex--thick_gapped flex--middle">
+      {#each item.fields.photos as media}
+      <li class="col col--2of12">
+        <Media {media} />
+      </li>
+      {/each}
+    </ul>
+  </div>
+  {/if}
   {/if}
 </section>
 
@@ -110,6 +126,27 @@
 
         &.embla__next {
           right: 0;
+        }
+      }
+    }
+
+    hr {
+      margin: 0;
+      color: $accent-light;
+    }
+
+    h6 {
+      margin-bottom: $s2;
+      color: $accent-light;
+    }
+
+    .icons {
+      li {
+        overflow: hidden;
+
+        :global(img) {
+          width: calc(100% + 4px);
+          margin: -2px;
         }
       }
     }

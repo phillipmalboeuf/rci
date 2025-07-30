@@ -38,9 +38,9 @@
   {/if}
 
   {#if item.fields.items?.length}
-  <ul class="list--nostyle col col--portrait--12of12 flex flex--gapped" class:col--6of12={item.fields.type === 'Accordéon'} class:flex--center={item.fields.type === 'Feed'}>
+  <ul class="list--nostyle col col--portrait--12of12 flex flex--gapped" class:col--6of12={item.fields.type === 'Accordéon'} class:flex--center={item.fields.type === 'Feed'} class:flex--stretch={item.fields.type === 'Grille'}>
     {#each item.fields.items as listItem}
-    <li class="col col--portrait--12of12" class:col--12of12={item.fields.type === 'Accordéon'} class:col--10of12={item.fields.type === 'Feed'} class:col--3of12={item.fields.type === 'Grille'} class:gris={item.fields.type === 'Feed'}>
+    <li class="col col--portrait--12of12" class:col--12of12={item.fields.type === 'Accordéon'} class:col--10of12={item.fields.type === 'Feed'} class:col--3of12={item.fields.type === 'Grille' && isTypeMembre(listItem)} class:col--4of12={item.fields.type === 'Grille' && isTypeText(listItem)} class:gris={item.fields.type === 'Feed'}>
       {#if item.fields.type === 'Accordéon'}
       <details name={item.sys.id}>
         {#if isTypeText(listItem)}
@@ -53,7 +53,7 @@
       </details>
       {:else}
       {#if isTypeText(listItem)}
-      <Text item={listItem} />
+      <Text item={listItem} card />
       {:else if isTypeMembre(listItem)}
       <Member item={listItem} />
       {/if}
@@ -89,6 +89,14 @@
     .corps {
       @media (min-width: $tablet_portrait) {
         padding-right: $s4;
+      }
+    }
+
+    .flex--stretch {
+      // row-gap: $s6;
+
+      .col--4of12 {
+        margin-top: $s6;
       }
     }
 

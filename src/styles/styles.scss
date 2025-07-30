@@ -286,20 +286,6 @@ button,
 		text-align: center;
 	}
 
-	.bleu &:not(.button--none) {
-		color: $blanc;
-		background: rgba($blanc, 0.25);
-	}
-
-	.bleu &:not(.button--none),
-	.bleu-pale &:not(.button--none) {
-		&:hover,
-		&:focus-visible {
-			color: $noir;
-			background: $blanc;
-		}
-	}
-
 	.blanc &:not(.button--none) {
 		color: $noir;
 		background: rgba($bleu, 0.1);
@@ -309,6 +295,23 @@ button,
 			color: $blanc;
 			background: $noir;
 		}
+	}
+
+	.bleu &:not(.button--none),
+	.bleu-pale &:not(.button--none) {
+		color: $blanc;
+		background: $bleu;
+
+		&:hover,
+		&:focus-visible {
+			color: $noir;
+			background: $blanc;
+		}
+	}
+
+	.bleu &:not(.button--none) {
+		color: $blanc;
+		background: rgba($blanc, 0.25);
 	}
 
 	&.button--large {
@@ -519,21 +522,22 @@ hr {
 }
 
 table {
-	// width: 100%;
+	width: 100%;
+	margin: $s2 0;
 	-webkit-border-horizontal-spacing: 0;
 	-webkit-border-vertical-spacing: 0;
 
 	td,
 	th {
 		font-weight: normal;
-		// border-bottom: 1px solid;
-		padding: ($s-3);
+		border-top: 1px solid var(--border-color, $muted);
+		padding: 4px $s0;
 		white-space: pre-line;
 		width: calc(100% / var(--length));
 		vertical-align: top;
 
-		&:last-child {
-			padding-right: 0;
+		&:first-child {
+			padding-left: 0;
 		}
 	}
 
@@ -712,6 +716,10 @@ dialog {
 
 	&.flex--bottom {
 		align-items: flex-end;
+	}
+
+	&.flex--stretch {
+		align-items: stretch;
 	}
 
 	&.flex--column {

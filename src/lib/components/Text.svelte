@@ -5,20 +5,25 @@
   import Rich from './Rich.svelte'
   import Media from './Media.svelte'
 
-  let { item, first, noTitle }: { item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">, first?: boolean, noTitle?: boolean } = $props()
+  let { item, first, noTitle, card }: { item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">, first?: boolean, noTitle?: boolean, card?: boolean } = $props()
 </script>
 
-<section class="flex flex--gapped flex--spaced text{item.fields.media ? '' : ' text--no-media'}" id={item.fields.id}>
-  {#if item.fields.media}
+<section class="flex flex--gapped flex--spaced text{item.fields.media ? '' : ' text--no-media'} text--{item.fields.format} {{
+  "Foncé": "bleu",
+  "Moyen": "bleu-pale",
+  "Gris": "gris",
+  "Blanc": "blanc",
+}[item.fields.couleur]}" class:card id={item.fields.id}>
+  {#if item.fields.media && !card}
   <div class="col col--5of12 col--portrait--12of12 media">
     <Media media={item.fields.media} />
   </div>
   {/if}
   {#if item.fields.corps || item.fields.liens?.length}
-  <div class="col col--7of12 col--portrait--12of12 flex flex--column flex--gapped corps" class:col--12of12={!item.fields.media}>
+  <div class="col col--portrait--12of12 flex flex--column flex--gapped corps" class:col--7of12={!card} class:col--12of12={!item.fields.media}>
     {#if item.fields.titre && !noTitle}
     <div class="col titre">
-      <h3>{item.fields.titre}</h3>
+      <h3 class:h4={card}>{item.fields.titre}</h3>
     </div>
     {/if}
 
@@ -26,11 +31,18 @@
     <Rich body={item.fields.corps} />
     {/if}
 
-    {#if item.fields.liens?.length}
-    <ul class="list--nostyle flex flex--gapped {item.fields.liens.length > 2 ? 'flex--column' : ''}">
+    {#if item.fields.liens?.length || (item.fields.media && card)}
+    <ul class="list--nostyle flex flex--gapped {item.fields.liens?.length > 2 ? 'flex--column' : ''}" class:flex--bottom={item.fields.media && card}>
+      {#if item.fields.media && card}
+      <li>
+        <Media media={item.fields.media} />
+      </li>
+      {/if}
+      {#if item.fields.liens?.length}
       {#each item.fields.liens as lien}
       <li><a href={lien.fields.destination} class="button button--muted" target={lien.fields.externe ? '_blank' : '_self'}>{lien.fields.titre}</a></li>
       {/each}
+      {/if}
     </ul>
     {/if}
   </div>
@@ -39,6 +51,94 @@
 
 <style lang="scss">
   .text {
+
+    &.text--Moyen {
+      padding: $s6 $s2 $s2;
+
+      .corps {
+        position: relative;
+        padding: $s2;
+        border-radius: $radius;
+        max-width: 1275px;
+        margin: 0 auto;
+
+        > :global(*) {
+          width: 50%;
+          margin-left: auto;
+        }
+      }
+
+      .titre {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: $s2;
+        width: 33%;
+      }
+
+      &.blanc {
+        .corps {
+          background-color: $gris;
+          --border-color: #{$muted};
+        }
+      }
+
+      &.bleu-pale {
+        .corps {
+          background-color: rgba($blanc, 0.1);
+          --border-color: #{rgba($blanc, 0.25)};
+        }
+      }
+
+      &.bleu {
+        .corps {
+          background-color: rgba($blanc, 0.05);
+          --border-color: #{rgba($blanc, 0.25)};
+        }
+      }
+    }
+
+    &.text--Plein {
+      padding: $s6 $s2 $s2;
+
+      :global(table:first-child:nth-last-child(2)) {
+        font-size: $s3;
+      }
+    }
+
+    &.card {
+      flex-direction: column;
+      padding: $s0;
+      border-radius: calc($radius * 2);
+      background-color: $blanc;
+      box-shadow: 8px 4px 15px 0px rgba(0, 0, 0, 0.10);
+      min-height: 100%;
+
+      .titre {
+        margin-bottom: $s0;
+      }
+
+      .corps {
+        flex: 1;
+        row-gap: $s4;
+      }
+
+      ul {
+        margin-top: auto;
+
+        li {
+          :global(img) {
+            height: $s5;
+            width: auto;
+            object-fit: contain;
+          }
+
+          &:has(.button) {
+            margin-left: auto;
+          }
+        }
+      }
+    }
   }
 </style>
 
