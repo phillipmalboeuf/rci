@@ -53,7 +53,7 @@
       </details>
       {:else}
       {#if isTypeText(listItem)}
-      <Text item={listItem} card />
+      <Text item={listItem} card={item.fields.type === 'Grille'} />
       {:else if isTypeMembre(listItem)}
       <Member item={listItem} />
       {/if}
