@@ -4,6 +4,7 @@
   
   import Rich from './Rich.svelte'
   import Media from './Media.svelte'
+  import Lien from './Lien.svelte';
 
   let { item, first, noTitle, card }: { item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">, first?: boolean, noTitle?: boolean, card?: boolean } = $props()
 </script>
@@ -40,7 +41,7 @@
       {/if}
       {#if item.fields.liens?.length}
       {#each item.fields.liens as lien}
-      <li><a href={lien.fields.destination} class="button button--muted" target={lien.fields.externe ? '_blank' : '_self'}>{lien.fields.titre}</a></li>
+      <li><Lien {lien} muted /></li>
       {/each}
       {/if}
     </ul>
@@ -157,7 +158,7 @@
             object-fit: contain;
           }
 
-          &:has(.button) {
+          &:has(:global(.button)) {
             margin-left: auto;
           }
         }

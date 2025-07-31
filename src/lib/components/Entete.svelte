@@ -4,6 +4,7 @@
   
   import Rich from './Rich.svelte'
   import Media from './Media.svelte'
+  import Lien from './Lien.svelte'
 
   let { item }: { item: Entry<TypeHeaderSkeleton, "WITHOUT_UNRESOLVABLE_LINKS"> } = $props()
 </script>
@@ -35,7 +36,7 @@
       {#if item.fields.liens?.length}
       <div class="entete__liens">
         {#each item.fields.liens as lien}
-        <a href={lien.fields.destination} class="button" target={lien.fields.externe ? '_blank' : '_self'}>{lien.fields.titre}</a>
+        <Lien {lien} />
         {/each}
       </div>
       {/if}

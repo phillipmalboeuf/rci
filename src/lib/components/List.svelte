@@ -6,6 +6,7 @@
   import Rich from './Rich.svelte'
   import Media from './Media.svelte'
   import Member from './Member.svelte'
+  import Lien from './Lien.svelte'
 
   let { item }: { item: Entry<TypeListeSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> } = $props()
 </script>
@@ -30,7 +31,7 @@
     {#if item.fields.liens?.length && !item.fields.grandsBoutons}
     <ul class="list--nostyle flex flex--gapped">
       {#each item.fields.liens as lien}
-      <li><a href={lien.fields.destination} class="button" target={lien.fields.externe ? '_blank' : '_self'}>{lien.fields.titre}</a></li>
+      <li><Lien {lien} /></li>
       {/each}
     </ul>
     {/if}
