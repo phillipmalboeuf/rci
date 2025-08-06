@@ -7,6 +7,8 @@
   import Lien from './Lien.svelte'
 
   let { item, previousCouleur }: { item: Entry<TypeBannerSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">, previousCouleur?: typeof item.fields.couleur } = $props()
+
+  let icon = $derived(item.fields.media && item.fields.format !== 'Plein')
 </script>
 
 <section class="banner banner--{item.fields.format || 'Plein'} padded {item.fields.format !== 'Plein'
@@ -27,13 +29,13 @@
   "Moyen": "bleu-pale",
   "Gris": "gris",
   "Blanc": "blanc",
-}[item.fields.couleur]}" class:flex--column={!item.fields.media} class:flex--spaced={item.fields.media}>
+}[item.fields.couleur]}" class:flex--column={!icon} class:flex--spaced={icon}>
     {#if item.fields.media}
-    <figure class="col col--2of12 col--portrait--4of12">
+    <figure class="col col--2of12 col--portrait--4of12" class:col--12of12={!icon}>
       <Media media={item.fields.media} mobileMedia={item.fields.mobileMedia} />
     </figure>
     {/if}
-    <div class="banner__content flex flex--column flex--spaced flex--gapped col col--portrait--12of12" class:col--8of12={item.fields.media}>
+    <div class="banner__content flex flex--column flex--spaced flex--gapped col col--portrait--12of12" class:col--8of12={icon}>
       <Rich body={item.fields.corps} />
     </div>
     {#if item.fields.liens?.length}
