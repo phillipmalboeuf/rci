@@ -31,7 +31,7 @@
   "Blanc": "blanc",
 }[item.fields.couleur]}" class:flex--column={!icon} class:flex--spaced={icon}>
     {#if item.fields.media}
-    <figure class="col col--2of12 col--portrait--4of12" class:col--12of12={!icon}>
+    <figure class="col col--2of12" class:col--12of12={!icon} class:col--portrait--4of12={icon}>
       <Media media={item.fields.media} mobileMedia={item.fields.mobileMedia} />
     </figure>
     {/if}
