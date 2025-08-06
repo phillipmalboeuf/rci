@@ -85,6 +85,12 @@
 <style lang="scss">
   footer {
     min-height: 50lvh;
+    font-size: $s-1;
+
+    small,
+    .small {
+      font-size: calc($s-1 - 1px);
+    }
 
     .main-nav {
       margin-bottom: $s4;

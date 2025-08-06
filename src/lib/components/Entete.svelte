@@ -70,6 +70,10 @@
         width: 100%;
         max-width: 595px;
         margin-left: auto;
+
+        :global(hr:not(:first-child)) {
+          margin: calc($s-2 * -1) 0;
+        }
       }
     }
 

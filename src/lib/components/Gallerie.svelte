@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { type TypeGallerieSkeleton } from '$lib/clients/content_types'
+  import { type TypeGallerieSkeleton, type TypeBannerSkeleton } from '$lib/clients/content_types'
   import type { Entry } from 'contentful'
 
   import emblaCarouselSvelte from 'embla-carousel-svelte'
@@ -28,10 +28,15 @@
     // })
   ]
 
-  let { item }: { item: Entry<TypeGallerieSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> } = $props()
+  let { item, previousCouleur }: { item: Entry<TypeGallerieSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'>, previousCouleur?: TypeBannerSkeleton['fields']['couleur']['values'] } = $props()
 </script>
 
-<section class="gallerie" id={item.fields.id}>
+<section class="gallerie {{
+  "Foncé": "bleu",
+  "Moyen": "bleu-pale",
+  "Gris": "gris",
+  "Blanc": "blanc",
+}[previousCouleur]}" id={item.fields.id}>
   {#if item.fields.titre}
   <hr>
   <h6>{item.fields.titre}</h6>
@@ -59,9 +64,9 @@
   </div>
   {:else if item.fields.type === 'Icons'}
   <div class="icons">
-    <ul class="list--nostyle flex flex--thick_gapped flex--middle">
+    <ul class="list--nostyle flex flex--gapped flex--middle">
       {#each item.fields.photos as media}
-      <li class="col col--2of12">
+      <li class="col col--2of12 col--portrait--4of12">
         <Media {media} />
       </li>
       {/each}
@@ -74,6 +79,10 @@
 <style lang="scss">
   .gallerie {
     padding: $s6;
+
+    &:has(.icons) {
+      background-color: $blanc;
+    }
 
     @media (max-width: $mobile) {
       padding: $s0;
@@ -151,10 +160,14 @@
     .icons {
       li {
         overflow: hidden;
+        padding: $s-1;
+
+        @media (max-width: $mobile) {
+          padding: $s-3;
+        }
 
         :global(img) {
-          width: calc(100% + 4px);
-          margin: -2px;
+          // width: calc(100% + 4px);
         }
       }
     }

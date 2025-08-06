@@ -109,7 +109,7 @@
 
       &.bleu {
         .corps {
-          background-color: rgba($blanc, 0.05);
+          background-color: $bleu-fonce;
           --border-color: #{rgba($blanc, 0.25)};
         }
       }

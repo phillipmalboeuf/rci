@@ -279,6 +279,7 @@ button,
 	justify-content: center;
 	align-items: center;
 	gap: $s-2;
+	padding: calc($s-1 / 2) calc($s1) calc(($s-1 / 2) + 2px);
 	transition: background-color 333ms, color 333ms;
 
 	&.button--full {
@@ -302,7 +303,7 @@ button,
 	.bleu &:not(.button--none),
 	.bleu-pale &:not(.button--none) {
 		color: $blanc;
-		background: $bleu;
+		background: rgba($blanc, 0.25);
 
 		&:hover,
 		&:focus-visible {
@@ -551,14 +552,14 @@ table {
 	// 	padding: ($s-1) 0 ($s-2);
 	// }
 
-	// tr {
-	// 	&:first-child:last-child {
-	// 		td,
-	// 		th {
-	// 			border-top: none;
-	// 		}
-	// 	}
-	// }
+	tr {
+		&:last-child {
+			td,
+			th {
+				border-bottom: 1px solid var(--border-color, $muted);
+			}
+		}
+	}
 
 	td {
 		&:not(:first-child) {

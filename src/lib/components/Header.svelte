@@ -106,13 +106,22 @@
       position: relative;
       z-index: 99;
 
-      a,
-      :global(button) {
-        transition: color 0.333s;
+      a{
+        transition: opacity 0.333s;
 
         &:hover,
         &:focus-visible {
-          color: $bleu-pale;
+          opacity: 0.5;
+        }
+      }
+
+      :global(button) {
+        transition: opacity 0.333s;
+        opacity: 0.5;
+
+        &:hover,
+        &:focus-visible {
+          opacity: 1;
         }
       }
 

@@ -170,6 +170,7 @@
 
       summary {
         cursor: pointer;
+        transition: opacity 0.333s;
 
         svg {
           transition: transform 0.333s;
@@ -192,9 +193,15 @@
       }
     }
 
+    &:has(details[open]) {
+      details:not([open]) summary {
+        opacity: 0.5;
+      }
+    }
+
     &.bleu {
       details {
-        background-color: rgba($blanc, 0.05);
+        background-color: $bleu-fonce;
       }
     }
 

@@ -22,18 +22,18 @@
   "Gris": "gris",
   "Blanc": "blanc",
 }[item.fields.couleur]}">
-  <div class="banner__inner flex flex--column flex--gapped {{
+  <div class="banner__inner flex flex--gapped {{
   "Foncé": "bleu",
   "Moyen": "bleu-pale",
   "Gris": "gris",
   "Blanc": "blanc",
-}[item.fields.couleur]}">
+}[item.fields.couleur]}" class:flex--column={!item.fields.media} class:flex--spaced={item.fields.media}>
     {#if item.fields.media}
-    <figure>
+    <figure class="col col--2of12 col--portrait--4of12">
       <Media media={item.fields.media} mobileMedia={item.fields.mobileMedia} />
     </figure>
     {/if}
-    <div class="banner__content flex flex--column flex--spaced flex--gapped">
+    <div class="banner__content flex flex--column flex--spaced flex--gapped col col--portrait--12of12" class:col--8of12={item.fields.media}>
       <Rich body={item.fields.corps} />
     </div>
     {#if item.fields.liens?.length}
@@ -74,7 +74,21 @@
         @media (max-width: $tablet_portrait) {
           padding: $s-2;
         }
+
+        &.flex--spaced {
+          padding: $s3;
+
+          @media (max-width: $tablet_portrait) {
+            padding: $s-1;
+
+            figure {
+              margin-bottom: $s2;
+            }
+          }
+        }
       }
+
+      
     }
 
     &__content {

@@ -25,7 +25,7 @@
   {:else if isTypeHeader(item)}
   <Entete {item} />
   {:else if isTypeGallerie(item)}
-  <Gallerie {item} />
+  <Gallerie {item} previousCouleur={(data.page.fields.contenu[i - 1] as Entry<TypeBannerSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">)?.fields.couleur} />
   {/if}
 </section>
 {/each}
