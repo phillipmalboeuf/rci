@@ -122,7 +122,7 @@
         padding: $s6 $s0 $s0;
       }
 
-      :global(table:first-child:nth-last-child(2)) {
+      :global(table:first-child:nth-last-child(2) p:first-child) {
         font-size: $s3;
 
         @media (max-width: $tablet_portrait) {

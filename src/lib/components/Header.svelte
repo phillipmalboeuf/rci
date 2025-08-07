@@ -48,7 +48,12 @@
       <img src="/logo.svg" alt="RIC" />
     </a>
     <button class="button--none" aria-controls="menu" aria-expanded={menuOpen ? 'true' : 'false'} onclick={() => menuOpen = !menuOpen} aria-label="Menu">
-      <svg width="41" height="41" viewBox="0 0 41 41" ><circle cx="20.75" cy="20.75" r="20.25"/><line x1="10.625" y1="20.2622" x2="30.875" y2="20.2622" stroke="#14253D" stroke-width="3"/><line x1="10.625" y1="27.3501" x2="30.875" y2="27.3501" stroke="#14253D" stroke-width="3"/><line x1="10.625" y1="13.1753" x2="30.875" y2="13.1753" stroke="#14253D" stroke-width="3"/></svg>
+      <svg width="41" height="41" viewBox="0 0 41 41" class:open={menuOpen}>
+        <circle cx="20.75" cy="20.75" r="20.25"/>
+        <line x1="10.625" y1="13.1753" x2="30.875" y2="13.1753" stroke="#14253D" stroke-width="3"/>
+        <line x1="10.625" y1="20.2622" x2="30.875" y2="20.2622" stroke="#14253D" stroke-width="3"/>
+        <line x1="10.625" y1="27.3501" x2="30.875" y2="27.3501" stroke="#14253D" stroke-width="3"/>
+      </svg>
     </button>
   </nav>
   <nav class="main-nav flex flex--gapped flex--middle" class:open={menuOpen} id="menu">
@@ -78,6 +83,35 @@
     position: sticky;
     top: 0;
     z-index: 100;
+
+    button[aria-controls="menu"] {
+      svg {
+        line {
+          transition: opacity 0.333s, transform 0.333s;
+          transform-origin: center center;
+        }
+      }
+    }
+
+    &.open {
+      button[aria-controls="menu"] {
+        svg {
+          line {
+            &:nth-of-type(2) {
+              opacity: 0;
+            }
+
+            &:nth-of-type(1) {
+              transform: rotate(45deg) translateY(16%);
+            }
+
+            &:nth-of-type(3) {
+              transform: rotate(-45deg) translateY(-16%);
+            }
+          }
+        }
+      }
+    }
   }
 
   // header {
@@ -106,7 +140,8 @@
       position: relative;
       z-index: 99;
 
-      a{
+      a,
+      :global(button) {
         transition: opacity 0.333s;
 
         &:hover,
@@ -116,12 +151,14 @@
       }
 
       :global(button) {
-        transition: opacity 0.333s;
-        opacity: 0.5;
+        @media (min-width: $tablet_portrait) {
+          transition: opacity 0.333s;
+          opacity: 0.5;
 
-        &:hover,
-        &:focus-visible {
-          opacity: 1;
+          &:hover,
+          &:focus-visible {
+            opacity: 1;
+          }
         }
       }
 
@@ -155,8 +192,9 @@
           transition: transform 0.666s;
           flex-direction: column;
           align-items: flex-start;
+          --gap: 0;
 
-          padding: $s8 $s-1;
+          padding: $s8 $s-1 $s0;
 
           &.open {
             transform: translateY(100%);
@@ -175,103 +213,10 @@
             width: 100%;
             justify-content: flex-start;
             font-size: $s4;
-            // padding: $s-3 0;
+            padding: 0;
             border-bottom: 2px solid $bleu-pale;
           }
         }
       }
     }
-
-    //   color: $noir;
-
-    //   &.dark {
-    //     color: $blanc;
-    //   }
-      
-    //   a {
-    //     transition: transform 333ms;
-
-    //     &:hover,
-    //     &:focus-visible {
-    //       font-style: italic;
-    //       transform: translateY(-3px);
-    //     }
-    //   }
-
-    //   &.main-nav {
-    //     margin-left: auto;
-
-    //     @media (max-width: $tablet_portrait) {
-    //       display: none;
-    //     }
-    //   }
-
-    //   &:not(.main-nav) {
-    //     position: sticky;
-    //     top: 0;
-    //     z-index: 100;
-    //   }
-
-    //   &.logo-nav {
-    //     padding-bottom: $s-2;
-    //     z-index: 102;
-
-    //     &.open {
-    //       color: $noir !important;
-    //     }
-
-    //     @media (max-width: $tablet_portrait) {
-    //       :global(svg) {
-    //         height: 22px;
-    //         width: auto;
-    //       }
-    //     }
-    //   }
-
-    //   &.menu-nav {
-        
-    //     &.open {
-
-    //       button {
-    //         color: $noir;
-    //       }
-    //     }
-
-    //     @media (max-width: $tablet_portrait) {
-    //       margin-left: auto;
-    //     }
-
-    //     button {
-    //       position: relative;
-    //       z-index: 101;
-
-    //       :global(svg) {
-    //         transition: transform 333ms;
-    //       }
-
-    //       &:hover,
-    //       &:focus-visible {
-    //         :global(svg) {
-    //           transform: scale(1.25);
-    //         }
-    //       }
-
-    //       @media (max-width: $tablet_portrait) {
-    //         :global(svg) {
-    //           height: 22px;
-    //           width: auto;
-    //         }
-    //       }
-    //     }
-
-    //     dialog {
-    //       position: fixed;
-    //       top: 0;
-    //       right: 0;
-    //       width: 100%;
-    //       height: 100%;
-    //       z-index: 100;
-    //     }
-    //   }
-    // }
 </style>

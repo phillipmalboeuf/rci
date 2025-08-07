@@ -144,6 +144,10 @@
         &.embla__next {
           right: 0;
         }
+
+        @media (max-width: $mobile) {
+          display: none;
+        }
       }
     }
 

@@ -164,10 +164,6 @@
       background-color: rgba($bleu-pale, 0.05);
       margin-bottom: calc($s-3 * -1);
 
-      @media (max-width: $tablet_portrait) {
-        margin-bottom: 0;
-      }
-
       summary {
         cursor: pointer;
         transition: opacity 0.333s;
