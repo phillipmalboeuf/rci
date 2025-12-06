@@ -24,9 +24,11 @@
   </div>
   {/if}
 
-  {#if item.fields.corps}
+  
   <div class="col col--6of12 col--mobile--12of12 flex flex--column flex--gapped corps">
+    {#if item.fields.corps}
     <Rich body={item.fields.corps} />
+    {/if}
 
     {#if item.fields.liens?.length && !item.fields.grandsBoutons}
     <ul class="list--nostyle flex flex--gapped">
@@ -36,7 +38,6 @@
     </ul>
     {/if}
   </div>
-  {/if}
 
   {#if item.fields.items?.length}
   <ul class="list--nostyle col col--portrait--12of12 flex flex--gapped" class:col--6of12={item.fields.type === 'Accordéon'} class:flex--center={item.fields.type === 'Feed'} class:flex--stretch={item.fields.type === 'Grille'}>
@@ -163,12 +164,15 @@
       border-radius: calc($radius / 2);
       background-color: rgba($bleu-pale, 0.05);
       margin-bottom: calc($s-3 * -1);
+      // transition: background-color 0.333s, color 0.333s;
 
       summary {
+        flex-wrap: nowrap;
         cursor: pointer;
         transition: opacity 0.333s;
 
         svg {
+          min-width: 14px;
           transition: transform 0.333s;
           transform: rotate(0deg);
         }
@@ -181,6 +185,9 @@
       }
 
       &[open] {
+        background-color: $bleu;
+        color: $blanc;
+
         summary {
           svg {
             transform: rotate(180deg);
@@ -198,12 +205,22 @@
     &.bleu {
       details {
         background-color: $bleu-fonce;
+
+        &[open] {
+          background-color: $blanc;
+          color: $noir;
+        }
       }
     }
 
     &.bleu-pale {
       details {
         background-color: rgba($blanc, 0.1);
+
+        &[open] {
+          background-color: $blanc;
+          color: $noir;
+        }
       }
     }
 

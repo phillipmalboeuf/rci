@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6,
 
 h1,
 .h1 {
-	font-size: $s7;
+	font-size: $s6;
 	line-height: 1;
 
 	// &.h--alt {
@@ -283,7 +283,7 @@ button,
 	justify-content: center;
 	align-items: center;
 	gap: $s-2;
-	padding: calc($s-1 / 2) calc($s1) calc(($s-1 / 2) + 2px);
+	padding: calc($s-2 / 2) calc($s1) calc(($s-2 / 2) + 2px);
 	transition: background-color 333ms, color 333ms;
 
 	&.button--full {
@@ -508,9 +508,13 @@ ol {
 		padding-left: 0;
 
 		ul:not(.list--nostyle) {
-			list-style: initial;
+			list-style: circle;
 		}
 	}
+}
+
+ul {
+	list-style: circle;
 }
 
 hr {
@@ -632,6 +636,11 @@ video {
 strong,
 .strong {
 	font-weight: 700;
+
+	p > & {
+		font-weight: 500;
+		opacity: 0.66;
+	}
 }
 
 dialog {

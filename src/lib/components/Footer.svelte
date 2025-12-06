@@ -28,8 +28,8 @@
       <Rich body={navigations.footer.fields.corps} />
       {/if}
     </div>
-    {#each navigations.footer.fields.liens as link}
-    <div class="col col--portrait--12of12">
+    {#each navigations.footer.fields.liens as link, i}
+    <div class="col col--portrait--12of12" class:col--landscape--6of12={i === navigations.footer.fields.liens.length - 1} class:col--landscape--3of12={i < navigations.footer.fields.liens.length - 1}>
       <hr>
       <a href={link.fields.destination} class="h5" target={link.fields.externe ? '_blank' : undefined}>{link.fields.titre}</a>
 
@@ -113,6 +113,12 @@
 
         &:first-child {
           margin-right: auto;
+        }
+
+        @media (max-width: $tablet_landscape) {
+          &:last-child {
+            margin-left: auto;
+          }
         }
 
         hr {

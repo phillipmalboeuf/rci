@@ -12,7 +12,7 @@
   <div class="card">
     <figure class="photo">
       {#if item.fields.photo}
-      <Media media={item.fields.photo} />
+      <Media media={item.fields.photo} ar={1.5} />
       {/if}
     </figure>
 
@@ -77,6 +77,10 @@
       overflow: hidden;
     }
 
+    .photo {
+      // background-color: $bleu-pale;
+    }
+
     .bio {
       position: absolute;
       top: 0;
@@ -86,6 +90,7 @@
       background-color: $blanc;
       padding: $s0;
       transform: rotateY(180deg);
+      overflow-y: auto;
 
       h5 {
         em {

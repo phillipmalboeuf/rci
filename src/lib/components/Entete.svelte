@@ -52,6 +52,10 @@
     &__titre {
       flex: 1;
       margin-bottom: $s4;
+
+      @media (max-width: $tablet_landscape) {
+        width: 100%;
+      }
     }
 
     hr {
@@ -88,24 +92,26 @@
 
         > div {
           width: 100%;
-          min-height: 223px;
+          min-height: 180px;
         }
 
         @media (min-width: $tablet_portrait) {
-          margin-bottom: calc($s6 * -1);
+          margin-bottom: calc($s7 * -1);
         }
 
         @media (max-width: $tablet_portrait) {
           margin-top: auto;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
     }
 
     @media (max-width: $tablet_portrait) {
-      min-height: calc(100lvh - 65px);
+      min-height: calc(50lvh - 65px);
 
       &:not(:has(> .entete__content)) {
-        min-height: calc(60lvh - 65px);
+        min-height: calc(40lvh - 65px);
       }
     }
   }
