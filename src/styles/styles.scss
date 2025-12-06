@@ -763,10 +763,10 @@ dialog {
   }
 
   &.flex--tight_gapped {
-    --gap: #{$s-1};
+    --gap: #{$s-2};
 
     @media (max-width: $mobile) {
-      --gap: #{$s-2};
+      --gap: #{$s-3};
     }
 
 		hr {

@@ -114,7 +114,7 @@ export interface TypePageFields {
     titre?: EntryFieldTypes.Symbol;
     id: EntryFieldTypes.Symbol;
     description?: EntryFieldTypes.Text;
-    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeBannerSkeleton | TypeGallerieSkeleton | TypeHeaderSkeleton | TypeListeSkeleton | TypeTextSkeleton>>;
+    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeBannerSkeleton | TypeGallerieSkeleton | TypeHeaderSkeleton | TypeListeSkeleton | TypeTextSkeleton | TypeNavigationSkeleton>>;
 }
 
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;

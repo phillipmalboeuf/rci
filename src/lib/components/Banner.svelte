@@ -39,7 +39,7 @@
       <Rich body={item.fields.corps} />
     </div>
     {#if item.fields.liens?.length}
-    <div class="banner__liens flex flex--gapped flex--middle">
+    <div class="banner__liens flex flex--tight_gapped flex--middle">
       {#each item.fields.liens as lien}
       <Lien {lien} />
       {/each}
