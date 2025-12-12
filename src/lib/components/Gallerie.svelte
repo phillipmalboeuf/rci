@@ -50,7 +50,7 @@
     {#each item.fields.photos as media}
     <li class="embla__slide" style:--slide-width={'100%'}>
       <figure>
-        <Media {media} />
+        <Media {media} ar={9/16} contain />
       </figure>
     </li>
     {/each}
