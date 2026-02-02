@@ -7,6 +7,7 @@
   
   import Locales from './Locales.svelte'
   import Rich from './Rich.svelte';
+  import { getLocale } from '$lib/paraglide/runtime';
   // import Icon from './Icon.svelte'
   // import Footer from './Footer.svelte'
   
@@ -77,8 +78,8 @@
   </div>
   <nav class="secondary-nav flex">
     <small>© 2025 Rail Industries Canada</small>
-    <a class="small" href="/politique" target="_blank">Politique de confidentialité</a>
-    <a class="small" href="https://caserne.com" target="_blank">Design par Caserne</a>
+    <a class="small" href="/politique" target="_blank">{#if getLocale() === 'fr'}Politique de confidentialité{:else}Confidentiality Policy{/if}</a>
+    <a class="small" href="https://caserne.com" target="_blank">{#if getLocale() === 'fr'}Design par Caserne{:else}Designed by Caserne{/if}</a>
   </nav>
 </footer>
 

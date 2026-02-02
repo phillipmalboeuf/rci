@@ -79,6 +79,14 @@
         }
       }
 
+      &#policy .corps {
+        @media (min-width: $tablet_portrait) {
+          > :global(*) {
+            margin-left: 0;
+          }
+        }
+      }
+
       .titre {
         @media (min-width: $tablet_portrait) {
           position: absolute;
