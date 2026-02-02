@@ -4,6 +4,8 @@
 
   import { fly } from 'svelte/transition'
   import { onNavigate } from '$app/navigation'
+  import { localizeHref } from '$lib/paraglide/runtime'
+  import { getLocalizedHref } from '$lib/utils/localize'
   
   import Locales from './Locales.svelte'
   // import Icon from './Icon.svelte'
@@ -44,7 +46,7 @@
 
 <header bind:offsetHeight={headerHeight} class="padded bleu flex flex--middle flex--gapped flex--spaced" class:open={menuOpen}>
   <nav class="logo-nav flex flex--spaced">
-    <a href="/">
+    <a href={localizeHref('/')}>
       <img src="/logo.svg" alt="RIC" />
     </a>
     <button class="button--none" aria-controls="menu" aria-expanded={menuOpen ? 'true' : 'false'} onclick={() => menuOpen = !menuOpen} aria-label="Menu">
@@ -59,7 +61,7 @@
   <nav class="main-nav flex flex--gapped flex--middle" class:open={menuOpen} id="menu">
     <hr>
     {#each navigations.principal.fields.liens as link}
-      <a href={link.fields.destination} target={link.fields.externe ? '_blank' : undefined}>{link.fields.titre}</a>
+      <a href={getLocalizedHref(link.fields.destination, link.fields.externe)} target={link.fields.externe ? '_blank' : undefined}>{link.fields.titre}</a>
     {/each}
     <Locales />
   </nav>

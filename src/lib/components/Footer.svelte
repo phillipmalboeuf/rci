@@ -7,7 +7,8 @@
   
   import Locales from './Locales.svelte'
   import Rich from './Rich.svelte';
-  import { getLocale } from '$lib/paraglide/runtime';
+  import { getLocale, localizeHref } from '$lib/paraglide/runtime';
+  import { getLocalizedHref } from '$lib/utils/localize';
   // import Icon from './Icon.svelte'
   // import Footer from './Footer.svelte'
   
@@ -32,10 +33,10 @@
     {#each navigations.footer.fields.liens as link, i}
     <div class="col col--portrait--12of12" class:col--landscape--6of12={i === navigations.footer.fields.liens.length - 1} class:col--landscape--3of12={i < navigations.footer.fields.liens.length - 1}>
       <hr>
-      <a href={link.fields.destination} class="h5" target={link.fields.externe ? '_blank' : undefined}>{link.fields.titre}</a>
+      <a href={getLocalizedHref(link.fields.destination, link.fields.externe)} class="h5" target={link.fields.externe ? '_blank' : undefined}>{link.fields.titre}</a>
 
       {#each link.fields.sousLiens as souslien}
-      <a href={souslien.fields.destination} class="small" target={souslien.fields.externe ? '_blank' : undefined}>{souslien.fields.titre}</a><br>
+      <a href={getLocalizedHref(souslien.fields.destination, souslien.fields.externe)} class="small" target={souslien.fields.externe ? '_blank' : undefined}>{souslien.fields.titre}</a><br>
       {/each}
     </div>
     {/each}
@@ -78,7 +79,7 @@
   </div>
   <nav class="secondary-nav flex">
     <small>© 2025 Rail Industries Canada</small>
-    <a class="small" href="/politique" target="_blank">{#if getLocale() === 'fr'}Politique de confidentialité{:else}Confidentiality Policy{/if}</a>
+    <a class="small" href={localizeHref('/politique')} target="_blank">{#if getLocale() === 'fr'}Politique de confidentialité{:else}Confidentiality Policy{/if}</a>
     <a class="small" href="https://caserne.com" target="_blank">{#if getLocale() === 'fr'}Design par Caserne{:else}Designed by Caserne{/if}</a>
   </nav>
 </footer>

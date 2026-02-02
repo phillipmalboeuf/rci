@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import type { Entry } from 'contentful'
+  import { getLocalizedHref } from '$lib/utils/localize'
   
   import { isTypeBanner, isTypeHeader, isTypeListe, isTypeText, isTypeGallerie, type TypeBannerSkeleton, isTypeNavigation } from '$lib/clients/content_types'
   import Banner from '$lib/components/Banner.svelte'
@@ -22,7 +23,7 @@
   <nav class="padded">
     <ul class="list--nostyle flex flex--tight_gapped">
       {#each item.fields.liens as lien}
-      <li><a class="button button--muted" href={lien.fields.destination}>{lien.fields.titre}</a></li>
+      <li><a class="button button--muted" href={getLocalizedHref(lien.fields.destination, lien.fields.externe)}>{lien.fields.titre}</a></li>
       {/each}
     </ul>
   </nav>

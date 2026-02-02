@@ -1,6 +1,7 @@
 <script lang="ts">
   import { type TypeListeSkeleton, type TypeTextSkeleton, isTypeLienDeNavigation, isTypeMembre, isTypeText } from '$lib/clients/content_types'
   import type { Entry } from 'contentful'
+  import { getLocalizedHref } from '$lib/utils/localize'
 
   import Text from './Text.svelte'
   import Rich from './Rich.svelte'
@@ -68,7 +69,7 @@
   {#if item.fields.liens?.length && item.fields.grandsBoutons}
   <ul class="list--nostyle flex flex--gapped boutons">
     {#each item.fields.liens as lien}
-    <li><a href={lien.fields.destination} class="button button--large button--full" target={lien.fields.externe ? '_blank' : '_self'}>{lien.fields.titre}</a></li>
+    <li><a href={getLocalizedHref(lien.fields.destination, lien.fields.externe)} class="button button--large button--full" target={lien.fields.externe ? '_blank' : '_self'}>{lien.fields.titre}</a></li>
     {/each}
   </ul>
   {/if}

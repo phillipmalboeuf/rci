@@ -1,8 +1,14 @@
 <script lang="ts">
   import type { Document } from '@contentful/rich-text-types'
   import Media from './Media.svelte'
+  import { localizeHref } from '$lib/paraglide/runtime'
 
   let { body, collapsable, open }: { body: Document, collapsable?: boolean, open?: boolean } = $props()
+
+  function getLocalizedHref(uri: string): string {
+    if (uri.startsWith('http')) return uri;
+    return localizeHref(uri);
+  }
 </script>
 
 {#snippet m(mark)}
@@ -25,7 +31,7 @@
 {mark.value}
 {/if}
 {:else if mark.nodeType === 'hyperlink'}
-<a href="{mark.data.uri}" target="{mark.data.uri.indexOf('http') === 0 ? '_blank' : '_self'}">
+<a href={getLocalizedHref(mark.data.uri)} target={mark.data.uri.indexOf('http') === 0 ? '_blank' : '_self'}>
   {#each mark.content as _mark}{@render m(_mark)}{/each}
 </a>
 {:else if mark.nodeType === 'asset-hyperlink'}
