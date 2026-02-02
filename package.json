@@ -27,7 +27,7 @@
 	},
 	"dependencies": {
 		"@inlang/paraglide-js": "^2.0.0",
-		"@sveltejs/adapter-vercel": "^4.0.5",
+		"@sveltejs/adapter-vercel": "^5.10.3",
 		"contentful": "^11.7.6",
 		"embla-carousel-auto-height": "^8.6.0",
 		"embla-carousel-autoplay": "^8.6.0",
